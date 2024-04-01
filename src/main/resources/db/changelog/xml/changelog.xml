@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="mateus.augusto" id="create_tables">
+        <comment>Create Tables</comment>
+        <sqlFile path="../sql/schema.sql" relativeToChangelogFile="true" />
+    </changeSet>
+    <changeSet author="mateus.augusto" id="function_for_teste_api">
+        <comment>Function For Teste Api</comment>
+        <sqlFile path="../sql/function_for_teste_api.sql" relativeToChangelogFile="true" />
+    </changeSet>
+</databaseChangeLog>

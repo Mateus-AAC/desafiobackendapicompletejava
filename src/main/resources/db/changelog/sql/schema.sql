@@ -1,0 +1,5 @@
+CREATE TABLE cpfs (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    cpf NVARCHAR(14) NOT NULL,
+    createdAt DATETIME NOT NULL
+);

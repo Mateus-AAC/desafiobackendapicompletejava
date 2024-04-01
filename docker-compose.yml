@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      SA_PASSWORD: "SqlServer2022!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  spring-app:
+    container_name: spring-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: 'challenge'
+      SPRING_DATASOURCE_URL: 'jdbc:sqlserver://sqlserver:1433;database=maxmilhas;user=sa;password=SqlServer2022!;encrypt=true;trustServerCertificate=true;'
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+      SPRING_MVC_PATHMATCH_MATCHING_STRATEGY: 'ANT_PATH_MATCHER'
+      SPRING_JPA_SHOW_SQL: 'true'
+      SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA: 'dbo'
+      SPRING_JPA_HIBERNATE_DDL_AUTO: 'none'
+      SPRING_JPA_HIBERNATE_NAMING_PHYSICAL_STRATEGY: 'org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl'
+      SPRING_LIQUIBASE_ENABLED: 'true'
+      SERVER_ERROR_INCLUDE_MESSAGE: 'always'
+      SERVER_ERROR_INCLUDE_BINDING_ERRORS: 'always'
